@@ -3,10 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tutorial/services/auth/auth_service.dart';
 import 'package:tutorial/services/auth/bloc/auth_bloc.dart';
 import 'package:tutorial/services/auth/bloc/auth_event.dart';
-import 'package:tutorial/services/auth/bloc/auth_state.dart';
 import 'package:tutorial/services/cloud/cloud_note.dart';
 import 'package:tutorial/services/cloud/firebase_cloud_storage.dart';
-
 import 'package:tutorial/views/notes/notes_list_view.dart';
 import '../../constants/routes.dart';
 import '../../enums/menu_action.dart';
