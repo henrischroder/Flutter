@@ -1,13 +1,7 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:tutorial/constants/routes.dart';
 import 'package:tutorial/services/auth/auth_exceptions.dart';
-import 'package:tutorial/services/auth/auth_service.dart';
 import 'package:tutorial/services/auth/bloc/auth_event.dart';
-
 import '../services/auth/bloc/auth_bloc.dart';
 import '../services/auth/bloc/auth_state.dart';
 import '../utilities/dialogs/error_dialog.dart';
@@ -57,44 +51,55 @@ class _RegisterViewState extends State<RegisterView> {
         appBar: AppBar(
           title: const Text('Register'),
         ),
-        body: Column(
-          children: [
-            TextField(
-              controller: _email,
-              decoration: const InputDecoration(hintText: 'Email'),
-              enableSuggestions: false,
-              autocorrect: false,
-              keyboardType: TextInputType.emailAddress,
-            ),
-            TextField(
-              controller: _password,
-              decoration: const InputDecoration(hintText: 'Password'),
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-            ),
-            TextButton(
-              onPressed: () async {
-                final email = _email.text;
-                final password = _password.text;
-                context.read<AuthBloc>().add(
-                      AuthEventRegister(
-                        email,
-                        password,
-                      ),
-                    );
-              },
-              child: const Text('Register'),
-            ),
-            TextButton(
-              onPressed: () {
-                context.read<AuthBloc>().add(
-                      const AuthEventLogOut(),
-                    );
-              },
-              child: const Text('Already registered? Login here!'),
-            )
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Enter your email and password to see your notes!'),
+              TextField(
+                controller: _email,
+                decoration: const InputDecoration(hintText: 'Email'),
+                enableSuggestions: false,
+                autocorrect: false,
+                keyboardType: TextInputType.emailAddress,
+              ),
+              TextField(
+                controller: _password,
+                decoration: const InputDecoration(hintText: 'Password'),
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+              ),
+              Center(
+                child: Column(
+                  children: [
+                    TextButton(
+                      onPressed: () async {
+                        final email = _email.text;
+                        final password = _password.text;
+                        context.read<AuthBloc>().add(
+                              AuthEventRegister(
+                                email,
+                                password,
+                              ),
+                            );
+                      },
+                      child: const Text('Register'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(
+                              const AuthEventLogOut(),
+                            );
+                      },
+                      child: const Text('Already registered? Login here!'),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
